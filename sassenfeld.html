@@ -1,0 +1,93 @@
+<meta charset="utf-8">
+<h1>Sassenfeld</h1>
+
+<p>Serve pra ver se o sistema pode ser resolvido</p>
+
+<div id="sistema">
+    <p>
+        <input id="n1" value="8"><input id="n2" value="1"><input id="n3" value="1">
+        <input id="i1" value="x">=<input id="r1" value="7">
+        <button id="trocar-1com2">↕</button>
+    </p>
+    <p>
+        <input id="n4" value="1"><input id="n5" value="1"><input id="n6" value="10">
+        <input id="i2" value="y">=<input id="r2" value="8">
+    </p>
+    <p>
+        <input id="n7" value="1"><input id="n8" value="9"><input id="n9" value="1">
+        <input id="i3" value="z">=<input id="r3" value="6">
+        <button id="trocar-2com3">↕</button>
+    </p>
+</div>
+<br>
+<button id='calcular'>Calcular</button><br>
+<br>
+<div id='resultado'></div>
+
+<script src='common.js'></script>
+<script src='sassenfeld.js'></script>
+
+<script>
+    document.getElementById('calcular').onclick = function() {
+        var sistema = [];
+        
+        for (i=1;i<10;i++) {
+            sistema[i] = eval(document.getElementById('n'+i).value);
+        }
+        
+        document.getElementById('resultado').innerHTML = sassenfeld(sistema).join('<br>');
+    }
+    
+    var getValorCampo = function(i){ return document.getElementById(i).value };
+    var setValorCampo = function(i, valor){ return document.getElementById(i).value = valor };
+    
+    document.getElementById('trocar-1com2').onclick = function() {
+        var anterior = [getValorCampo('n4'),
+                        getValorCampo('n5'),
+                        getValorCampo('n6'),
+                        getValorCampo('i2'),
+                        getValorCampo('r2')];
+    
+        setValorCampo('n4', getValorCampo('n1'));
+        setValorCampo('n5', getValorCampo('n2'));
+        setValorCampo('n6', getValorCampo('n3'));
+        setValorCampo('i2', getValorCampo('i1'));
+        setValorCampo('r2', getValorCampo('r1'));
+        
+        setValorCampo('n1', anterior[0]);
+        setValorCampo('n2', anterior[1]);
+        setValorCampo('n3', anterior[2]);
+        setValorCampo('i1', anterior[3]);
+        setValorCampo('r1', anterior[4]);
+    }
+    
+    document.getElementById('trocar-2com3').onclick = function() {
+        var anterior = [getValorCampo('n7'),
+                        getValorCampo('n8'),
+                        getValorCampo('n9'),
+                        getValorCampo('i3'),
+                        getValorCampo('r3')];
+    
+        setValorCampo('n7', getValorCampo('n4'));
+        setValorCampo('n8', getValorCampo('n5'));
+        setValorCampo('n9', getValorCampo('n6'));
+        setValorCampo('i3', getValorCampo('i2'));
+        setValorCampo('r3', getValorCampo('r2'));
+        
+        setValorCampo('n4', anterior[0]);
+        setValorCampo('n5', anterior[1]);
+        setValorCampo('n6', anterior[2]);
+        setValorCampo('i2', anterior[3]);
+        setValorCampo('r2', anterior[4]);
+    }
+    
+</script>
+
+<style>
+#sistema input {
+    width: 40px;
+}
+#n1, #n5, #n9 {
+    background: yellow;
+}
+</style>

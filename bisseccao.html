@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<h1>Bisseccão</h1>
+
+Função: <input id='funcao' value='(x*x*x)-(9*x)+3'><br>
+Intervalo Minimo: <input id='intervalo_min' value='0'><br>
+Intervalo Maximo: <input id='intervalo_max' value='1'><br>
+Precisão: <input id='precisao' value='0.008'><br>
+<br>
+<button id='calcular'>Calcular</button><br>
+<br>
+<div id='resultado'></div>
+
+<script src='common.js'></script>
+<script src='bisseccao.js'></script>
+
+<script>
+    document.getElementById('calcular').onclick = function() {
+        var funcao = 'function funcao(x) {return ' + document.getElementById('funcao').value + ';}';
+        eval(funcao)
+        
+        var intervalo_min = eval(document.getElementById('intervalo_min').value);
+        var intervalo_max = eval(document.getElementById('intervalo_max').value);
+        var precisao = eval(document.getElementById('precisao').value);
+        
+        document.getElementById('resultado').innerHTML = bisseccao(funcao, intervalo_min, intervalo_max, precisao).join('<br>');
+    }
+</script>

@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<h1>Gauss-Jacob</h1>
+
+<p>Para simplificar, vamos usar <strong>x, y e z</strong> em vez de <strong>x1, x2 e x3</strong><br>
+As funções devem estar já com a variável isolada</p>
+
+
+Função: x = <input id='funcao1' value='(7-y-z)/3'><br>
+Função: y = <input id='funcao2' value='(4-x-(2*z))/4'><br>
+Função: z = <input id='funcao3' value='(5-(2*y))/5'><br>
+Num. de Iteracoes: <input id='num_iteracoes' value='18'><br>
+<br>
+<button id='calcular'>Calcular</button><br>
+<br>
+<div id='resultado'></div>
+
+<script src='common.js'></script>
+<script src='gauss.js'></script>
+
+<script>
+    document.getElementById('calcular').onclick = function() {
+        var funcao1 = document.getElementById('funcao1').value;
+        var funcao2 = document.getElementById('funcao2').value;
+        var funcao3 = document.getElementById('funcao3').value;
+        var num_iteracoes = parseInt(document.getElementById('num_iteracoes').value, 10);
+
+        document.getElementById('resultado').innerHTML = gauss_jacob(funcao1, funcao2, funcao3, num_iteracoes).join('<br>');
+    }
+</script>
